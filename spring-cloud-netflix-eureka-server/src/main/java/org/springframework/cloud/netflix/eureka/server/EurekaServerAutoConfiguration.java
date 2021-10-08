@@ -70,15 +70,16 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
+ * 通过spi机制
  * @author Gunnar Hillert
  * @author Biju Kunjummen
  * @author Fahim Farook
  */
 @Configuration(proxyBeanMethods = false)
 @Import(EurekaServerInitializerConfiguration.class)
-@ConditionalOnBean(EurekaServerMarkerConfiguration.Marker.class) // 注解表示只要Spring容器中有EurekaServerMarkerConfiguration.Marker.class类的实例存在，那么就会将这个EurekaServerAutoConfiguration也注入到Spring容器中。
-@EnableConfigurationProperties({ EurekaDashboardProperties.class,
-		InstanceRegistryProperties.class })
+// @ConditionalOnBean 注解表示只要Spring容器中有EurekaServerMarkerConfiguration.Marker.class类的实例存在，那么就会将这个EurekaServerAutoConfiguration也注入到Spring容器中。
+@ConditionalOnBean(EurekaServerMarkerConfiguration.Marker.class)
+@EnableConfigurationProperties({ EurekaDashboardProperties.class, InstanceRegistryProperties.class })
 @PropertySource("classpath:/eureka/server.properties")
 public class EurekaServerAutoConfiguration implements WebMvcConfigurer {
 
