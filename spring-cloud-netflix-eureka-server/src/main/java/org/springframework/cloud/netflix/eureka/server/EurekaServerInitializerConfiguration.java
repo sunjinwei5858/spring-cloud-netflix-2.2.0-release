@@ -33,14 +33,13 @@ import org.springframework.core.Ordered;
 import org.springframework.web.context.ServletContextAware;
 
 /**
+ * 该类实现了SmartLifecycle接口 会通过生命周期回调方法初始化eureka
  * @author Dave Syer
  */
 @Configuration(proxyBeanMethods = false)
-public class EurekaServerInitializerConfiguration
-		implements ServletContextAware, SmartLifecycle, Ordered {
+public class EurekaServerInitializerConfiguration implements ServletContextAware, SmartLifecycle, Ordered {
 
-	private static final Log log = LogFactory
-			.getLog(EurekaServerInitializerConfiguration.class);
+	private static final Log log = LogFactory.getLog(EurekaServerInitializerConfiguration.class);
 
 	@Autowired
 	private EurekaServerConfig eurekaServerConfig;

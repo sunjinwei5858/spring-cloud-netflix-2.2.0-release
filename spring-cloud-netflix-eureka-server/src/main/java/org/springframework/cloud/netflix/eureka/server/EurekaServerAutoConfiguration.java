@@ -76,6 +76,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Fahim Farook
  */
 @Configuration(proxyBeanMethods = false)
+// EurekaServerInitializerConfiguration是初始化eureka的实现类，这个类实现了SmartLifeCycle接口，通过生命周期回调方法初始化eureka。
 @Import(EurekaServerInitializerConfiguration.class)
 // @ConditionalOnBean 注解表示只要Spring容器中有EurekaServerMarkerConfiguration.Marker.class类的实例存在，那么就会将这个EurekaServerAutoConfiguration也注入到Spring容器中。
 @ConditionalOnBean(EurekaServerMarkerConfiguration.Marker.class)

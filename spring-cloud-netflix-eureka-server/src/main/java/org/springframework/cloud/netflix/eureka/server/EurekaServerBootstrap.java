@@ -38,6 +38,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * spring-cloud整合eureka 使用EurekaServerBootstrap类重写了eureka的EurekaBootstrap
  * @author Spencer Gibb
  */
 public class EurekaServerBootstrap {
