@@ -133,12 +133,18 @@ public class RibbonClientConfiguration {
 		return rule;
 	}
 
+	/**
+	 * 核心组件3：IPing 用于定期检查server的可用性 用来判断server是否存活
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public IPing ribbonPing(IClientConfig config) {
 		if (this.propertiesFactory.isSet(IPing.class, name)) {
 			return this.propertiesFactory.get(IPing.class, config, name);
 		}
+		// DummyPing一直返回true
 		return new DummyPing();
 	}
 
