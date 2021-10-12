@@ -195,6 +195,12 @@ public class RibbonClientConfiguration {
 				serverListFilter, serverListUpdater);
 	}
 
+	/**
+	 * 核心组件5：过滤服务
+	 *
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	@SuppressWarnings("unchecked")
