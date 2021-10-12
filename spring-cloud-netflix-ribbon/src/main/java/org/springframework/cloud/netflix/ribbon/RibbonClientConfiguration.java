@@ -148,6 +148,12 @@ public class RibbonClientConfiguration {
 		return new DummyPing();
 	}
 
+	/**
+	 * 核心组件4：获取服务列表
+	 * ServerList提供了两个接口 一个是第一次获取server列表 一个是更新server列表（定时任务 30s）
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	@SuppressWarnings("unchecked")
