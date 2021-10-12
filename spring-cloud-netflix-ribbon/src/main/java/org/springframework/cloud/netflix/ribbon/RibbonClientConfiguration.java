@@ -166,6 +166,12 @@ public class RibbonClientConfiguration {
 		return serverList;
 	}
 
+	/**
+	 * 核心组件6：服务列表更新
+	 * 最核心的方法就是start开启定时任务调用updateAction来更新allServerList
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public ServerListUpdater ribbonServerListUpdater(IClientConfig config) {
@@ -213,6 +219,13 @@ public class RibbonClientConfiguration {
 		return filter;
 	}
 
+	/**
+	 *
+	 * @param loadBalancer
+	 * @param config
+	 * @param retryHandler
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public RibbonLoadBalancerContext ribbonLoadBalancerContext(ILoadBalancer loadBalancer,
