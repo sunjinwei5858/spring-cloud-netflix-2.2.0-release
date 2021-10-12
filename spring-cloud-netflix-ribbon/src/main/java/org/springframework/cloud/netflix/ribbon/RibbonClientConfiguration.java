@@ -144,6 +144,17 @@ public class RibbonClientConfiguration {
 		return new PollingServerListUpdater(config);
 	}
 
+	/**
+	 * ZoneAwareLoadBalancer是默认的负载均衡器
+	 * 这六个入参 加上ILoaderBalancer 就是ribbon的核心接口 它们共同定义了ribbon的特性
+	 * @param config 定义ribbon管理配置的接口
+	 * @param serverList 定义获取服务列表方法的接口
+	 * @param serverListFilter 定义特定期望获取服务列表方法的接口
+	 * @param rule 定义ribbon负载均衡策略的接口
+	 * @param ping 定义定期ping服务检查可用性的接口
+	 * @param serverListUpdater 为DynamicServerListLoadBalancer 定义动态更新服务列表的接口
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public ILoadBalancer ribbonLoadBalancer(IClientConfig config,
