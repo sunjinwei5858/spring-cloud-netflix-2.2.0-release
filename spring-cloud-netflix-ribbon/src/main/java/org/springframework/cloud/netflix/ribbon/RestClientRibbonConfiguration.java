@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
 /**
+ * 该RestClient 已经过期了
  * @author Spencer Gibb
  */
 @SuppressWarnings("deprecation")

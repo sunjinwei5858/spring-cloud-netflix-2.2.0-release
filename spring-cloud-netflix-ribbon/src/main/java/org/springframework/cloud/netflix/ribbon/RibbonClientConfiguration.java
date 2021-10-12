@@ -67,6 +67,7 @@ import static org.springframework.cloud.netflix.ribbon.RibbonUtils.updateToSecur
 // Order is important here, last should be the default, first should be optional
 // see
 // https://github.com/spring-cloud/spring-cloud-netflix/issues/2086#issuecomment-316281653
+// 这里导入了四个http客户端 但是RestClient这个已经过期了 无需关注
 @Import({ HttpClientConfiguration.class, OkHttpRibbonConfiguration.class,
 		RestClientRibbonConfiguration.class, HttpClientRibbonConfiguration.class })
 public class RibbonClientConfiguration {
