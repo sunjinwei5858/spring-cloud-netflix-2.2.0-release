@@ -78,6 +78,10 @@ public class RibbonAutoConfiguration {
 		return HasFeatures.namedFeature("Ribbon", Ribbon.class);
 	}
 
+	/**
+	 * 管理ribbon客户端上下文
+	 * @return
+	 */
 	@Bean
 	public SpringClientFactory springClientFactory() {
 		SpringClientFactory factory = new SpringClientFactory();
