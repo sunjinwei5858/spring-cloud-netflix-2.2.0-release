@@ -112,6 +112,16 @@ public class RibbonClientConfiguration {
 		return config;
 	}
 
+	/**
+	 * 核心组件2：IRule 均衡策略接口
+	 * ribbon提供了丰富的均衡策略
+	 * 比如
+	 * RandomRule RoundRobinRule  RetryRule BestAvailableRule
+	 * AvailabilityFilteringRule ResponseTimeWeightedRule
+	 * ZoneAvoidanceRule
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public IRule ribbonRule(IClientConfig config) {
