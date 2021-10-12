@@ -95,12 +95,18 @@ public class RibbonClientConfiguration {
 	@Autowired
 	private PropertiesFactory propertiesFactory;
 
+	/**
+	 * 核心组件1：IClientConfig 管理客户端配置的核心接口
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public IClientConfig ribbonClientConfig() {
 		DefaultClientConfigImpl config = new DefaultClientConfigImpl();
 		config.loadProperties(this.name);
+		// 连接超时 默认1s 也可以在配置文件中定制配置，例如配置超时和重试：
 		config.set(CommonClientConfigKey.ConnectTimeout, DEFAULT_CONNECT_TIMEOUT);
+		// 读取超时 默认1s 也可以在配置文件中定制配置，例如配置超时和重试：
 		config.set(CommonClientConfigKey.ReadTimeout, DEFAULT_READ_TIMEOUT);
 		config.set(CommonClientConfigKey.GZipPayload, DEFAULT_GZIP_PAYLOAD);
 		return config;
