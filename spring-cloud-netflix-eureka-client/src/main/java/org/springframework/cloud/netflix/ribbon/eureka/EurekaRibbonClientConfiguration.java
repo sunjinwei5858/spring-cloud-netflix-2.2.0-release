@@ -85,6 +85,11 @@ public class EurekaRibbonClientConfiguration {
 		this.approximateZoneFromHostname = approximateZoneFromHostname;
 	}
 
+	/**
+	 * IPing 的默认实现类为 NIWSDiscoveryPing。
+	 * @param config
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public IPing ribbonPing(IClientConfig config) {
@@ -96,17 +101,26 @@ public class EurekaRibbonClientConfiguration {
 		return ping;
 	}
 
+	/**
+	 * ServerList 的默认实现类为 DomainExtractingServerList，
+	 * 但是 DomainExtractingServerList 在构造时又传入了一个类型为 DiscoveryEnabledNIWSServerList 的 ServerList
+	 *
+	 * @param config
+	 * @param eurekaClientProvider 来获取 EurekaClient
+	 * @return
+	 */
 	@Bean
 	@ConditionalOnMissingBean
-	public ServerList<?> ribbonServerList(IClientConfig config,
-			Provider<EurekaClient> eurekaClientProvider) {
+	public ServerList<?> ribbonServerList(IClientConfig config, Provider<EurekaClient> eurekaClientProvider) {
 		if (this.propertiesFactory.isSet(ServerList.class, serviceId)) {
 			return this.propertiesFactory.get(ServerList.class, config, serviceId);
 		}
-		DiscoveryEnabledNIWSServerList discoveryServerList = new DiscoveryEnabledNIWSServerList(
-				config, eurekaClientProvider);
-		DomainExtractingServerList serverList = new DomainExtractingServerList(
-				discoveryServerList, config, this.approximateZoneFromHostname);
+		// DiscoveryEnabledNIWSServerList就是从eureka client获取server的组件
+		// DomainExtractingServerList 先用 DomainExtractingServerList 获取服务列表，然后根据 Ribbon 客户端配置重新构造 Server 对象返回。
+		// 获取服务列表的核心在 DiscoveryEnabledNIWSServerList 中。
+		DiscoveryEnabledNIWSServerList discoveryServerList = new DiscoveryEnabledNIWSServerList(config, eurekaClientProvider);
+
+		DomainExtractingServerList serverList = new DomainExtractingServerList(discoveryServerList, config, this.approximateZoneFromHostname);
 		return serverList;
 	}
 

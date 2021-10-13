@@ -23,6 +23,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * eureka client引入了ribbon依赖 通过spi进行加载
  * Spring configuration for configuring Ribbon defaults to be Eureka based if Eureka
  * client is enabled.
  *
@@ -33,6 +34,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 @ConditionalOnRibbonAndEurekaEnabled
 @AutoConfigureAfter(RibbonAutoConfiguration.class)
+// 定义了ribbon全局配置类
 @RibbonClients(defaultConfiguration = EurekaRibbonClientConfiguration.class)
 public class RibbonEurekaAutoConfiguration {
 
