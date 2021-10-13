@@ -87,6 +87,7 @@ public class EurekaRibbonClientConfiguration {
 
 	/**
 	 * IPing 的默认实现类为 NIWSDiscoveryPing。
+	 * 逻辑：判断server是否存活，每隔30s的定时任务，只是单纯的遍历serverList，isAlive方法，判断server的状态是不是up而已
 	 * @param config
 	 * @return
 	 */
