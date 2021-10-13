@@ -35,6 +35,7 @@ import org.springframework.util.ReflectionUtils;
 import static org.springframework.cloud.netflix.ribbon.RibbonUtils.updateToSecureConnectionIfNeeded;
 
 /**
+ * RestTemplate的负载均衡客户端
  * @author Spencer Gibb
  * @author Dave Syer
  * @author Ryan Baxter
